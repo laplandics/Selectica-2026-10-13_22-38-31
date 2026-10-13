@@ -1,0 +1,2 @@
+[*.cs]
+dotnet_diagnostic.EXA001.severity = error
