@@ -1,4 +1,4 @@
-Shader "Custom/URP/ConstantThicknessCircle"
+Shader "Custom/ConstantThicknessCircle"
 {
     Properties
     {

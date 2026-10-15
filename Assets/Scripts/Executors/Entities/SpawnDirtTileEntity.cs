@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 namespace Selectica
 {
@@ -13,8 +14,9 @@ namespace Selectica
                 hasMesh = true,
                 meshName = "DirtTile",
                 materialName = "Tile",
+                positionIndex = new Vector2Int(0, 0),
                 selectable = true,
-                cellIndex = new CellIndex(0, 0)
+                harvestable = false,
             });
 
             Coroutines.Start(ExecutorsRegistry.ExecuteAll<IExecuteOnEntitySpawn>(dirtTileEntity));

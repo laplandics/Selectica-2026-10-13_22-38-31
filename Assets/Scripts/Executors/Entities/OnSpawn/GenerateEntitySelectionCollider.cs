@@ -25,7 +25,7 @@ namespace Selectica
             collider.size = meshFilter.sharedMesh.bounds.size;
             
             var selectionCollider = colliderObject.AddComponent<SelectionCollider>();
-            selectionCollider.bindEntityId = entity.ID;
+            selectionCollider.entity = entity;
             
             entity.selectionColliderObject = colliderObject;
             yield return null;

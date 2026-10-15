@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Selectica
 {
@@ -10,9 +11,12 @@ namespace Selectica
         public bool hasMesh;
         public string meshName;
         public string materialName;
-        
-        public CellIndex cellIndex;
+
+        public Vector2Int positionIndex;
         
         public bool selectable;
+        
+        public bool harvestable;
+        public float harvestSpeed;
     }
 }

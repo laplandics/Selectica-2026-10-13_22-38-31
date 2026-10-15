@@ -8,7 +8,8 @@ namespace Selectica
     public static class ExecutorsRegistry
     {
         private static Dictionary<Type, List<Func<object[], IEnumerator>>> _executorsRoutinesMap = new();
-
+        private static bool _brakeExecutors;
+        
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void Load() => _executorsRoutinesMap = ExecutorsLoader.Load();
 
@@ -20,14 +21,17 @@ namespace Selectica
                 yield break;
             }
 
+            _brakeExecutors = false;
             foreach (var routine in routines)
             {
                 var enumerator = routine(args);
-                while (enumerator.MoveNext())
+                while (enumerator.MoveNext() && !_brakeExecutors)
                 {
                     yield return enumerator.Current;
                 }
             }
         }
+        
+        public static void BrakeCurrentExecutions() => _brakeExecutors = true;
     }
 }

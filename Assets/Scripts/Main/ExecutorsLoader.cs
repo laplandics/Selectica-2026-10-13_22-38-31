@@ -9,7 +9,7 @@ namespace Selectica
 {
     public static class ExecutorsLoader
     {
-        private const int DEFAULT_PRIORITY = 100;
+        private const int DEFAULT_PRIORITY = 50;
         private const string EXECUTION_ROUTINE_BASE_NAME = "Execute";
 
         private static readonly Type[] ExecuteParameterTypes = { typeof(object[]) };
@@ -47,7 +47,7 @@ namespace Selectica
 
                 var inheritors = candidates
                     .Where(interfaceType.IsAssignableFrom)
-                    .OrderBy(GetPriority)
+                    .OrderBy(t => GetPriority(t, interfaceType))
                     .ThenBy(t => t.FullName, StringComparer.Ordinal);
 
                 var list = new List<Func<object[], IEnumerator>>();
@@ -66,8 +66,24 @@ namespace Selectica
             return map;
         }
 
-        private static int GetPriority(Type type) =>
-            type.GetCustomAttribute<ExecutePriorityAttribute>()?.Priority ?? DEFAULT_PRIORITY;
+        private static int GetPriority(Type classType, Type interfaceType)
+        {
+            int? general = null;
+            foreach (var attr in classType.GetCustomAttributes<ExecutePriorityAttribute>(false))
+            {
+                if (attr.InterfaceType != null && (!attr.InterfaceType.IsInterface ||
+                !attr.InterfaceType.IsAssignableFrom(classType)))
+                {
+                    Debug.LogWarning($"{classType.Name}: {nameof(ExecutePriorityAttribute)} references " +
+                                     $"{attr.InterfaceType.Name}, which the class does not implement.");
+                }
+                
+                if (attr.InterfaceType == interfaceType) return attr.Priority;
+                if (attr.InterfaceType == null) general = attr.Priority;
+            }
+            
+            return general ?? DEFAULT_PRIORITY;
+        }
 
         private static IEnumerable<Type> GetAllTypes()
         {

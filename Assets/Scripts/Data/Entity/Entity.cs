@@ -1,4 +1,5 @@
 using System;
+using Unity.Properties;
 using UnityEngine;
 
 namespace Selectica
@@ -7,19 +8,23 @@ namespace Selectica
     public class Entity
     {
         [Header("Inconsistent")]
-        [SerializeField] private string id = Guid.NewGuid().ToString();
+        [DontCreateProperty][SerializeField] private string id = Guid.NewGuid().ToString();
 
         [Header("Save/Load Data")]
-        public EntityData entityData;
+        [DontCreateProperty] public EntityData entityData;
 
         [Header("Runtime data")]
-        public EntityInstance instance;
-        public GameObject meshObject;
-        public GameObject selectionColliderObject;
-        public Cell currentCell;
+        [DontCreateProperty] public EntityInstance instance;
+        [DontCreateProperty] public GameObject meshObject;
+        [DontCreateProperty] public GameObject selectionColliderObject;
+        [DontCreateProperty] public GameObject harvestColliderObject;
+        [DontCreateProperty] public Outline outline;
         
         public string ID => id;
 
         public Entity(EntityData entityData) => this.entityData = entityData;
+
+        [CreateProperty] public string Name => entityData.meshName;
+        [CreateProperty] public float HarvestProgress { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Selectica
         {
             AssetsLoader<GameObject>.LoadAssets("Prefabs");
             AssetsLoader<VisualTreeAsset>.LoadAssets("UIAssets");
+            AssetsLoader<PanelSettings>.LoadAssets("UIAssets");
             AssetsLoader<Material>.LoadAssets("Materials");
             AssetsLoader<Mesh>.LoadAssets("Meshes");
         }

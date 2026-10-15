@@ -19,6 +19,7 @@ namespace Selectica
             outline.OutlineWidth = 8;
             outline.enabled = false;
 
+            entity.outline = outline;
             yield return null;
         }
     }

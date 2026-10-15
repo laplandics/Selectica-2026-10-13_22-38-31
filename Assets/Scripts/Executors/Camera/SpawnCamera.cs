@@ -11,10 +11,7 @@ namespace Selectica
             var cameraPrefab = R.AssetsLoader<GameObject>.GetAsset("GameCamera");
             var cameraObject = Object.Instantiate(cameraPrefab);
             cameraObject.name = "GameCamera";
-            
-            var camera = cameraObject.GetComponentInChildren<Camera>();
-            G.MainCamera = camera;
-            
+
             yield return ExecutorsRegistry.ExecuteAll<IExecuteOnCameraReady>(cameraObject);
         }
     }

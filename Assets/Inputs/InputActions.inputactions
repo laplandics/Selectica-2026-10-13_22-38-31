@@ -52,56 +52,6 @@
                     "isPartOfComposite": true
                 }
             ]
-        },
-        {
-            "name": "Selection",
-            "id": "ce4b01a5-e3c3-472d-991a-8d33b7b0c6de",
-            "actions": [
-                {
-                    "name": "Select",
-                    "type": "Button",
-                    "id": "73a297da-1599-4c59-bd53-ca5f767c8cdd",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "Deselect",
-                    "type": "Button",
-                    "id": "88e7c82f-3ebb-41aa-bc1f-379f1b9631f7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "1595f230-6c1f-45e4-ae4d-659211b2c7bf",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "32f60b28-1a63-43e2-afce-e4d9c30bebfd",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Deselect",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
         }
     ],
     "controlSchemes": [
